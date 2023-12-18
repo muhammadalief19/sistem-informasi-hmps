@@ -57,6 +57,7 @@ class MessageController extends Controller
 
         // data request
         $data = [
+            'uuid' => uniqid(), 
             'name' => $request->name,
             'email' => $request->email,
             'subject' => $request->subject,
