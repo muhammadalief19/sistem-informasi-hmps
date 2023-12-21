@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MessageController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,4 +19,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// route authentication
+Route::controller(AuthController::class)->group(function () {
+    Route::get("/login", "loginView");
+});
+
+// route message
 Route::resource("/message", MessageController::class);
