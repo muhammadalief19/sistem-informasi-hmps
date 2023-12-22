@@ -13,8 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('surat_keluars', function (Blueprint $table) {
+        Schema::create('surat_keluar', function (Blueprint $table) {
             $table->id();
+            $table->uuid('kode_surat')->unique();
+            $table->string('tujuan');
+            $table->date('tanggal');
+            $table->string('tempat');
+            $table->text('keterangan');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
@@ -26,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('surat_keluars');
+        Schema::dropIfExists('surat_keluar');
     }
 };

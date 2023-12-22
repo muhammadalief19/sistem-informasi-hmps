@@ -13,8 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('proposals', function (Blueprint $table) {
+        Schema::create('proposal', function (Blueprint $table) {
             $table->id();
+            $table->uuid('kode_proposal')->unique();
+            $table->string('judul');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('deskripsi');
             $table->timestamps();
         });
     }
@@ -26,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('proposals');
+        Schema::dropIfExists('proposal');
     }
 };
