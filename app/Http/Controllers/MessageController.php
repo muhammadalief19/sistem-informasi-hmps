@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Ramsey\Uuid\Uuid;
 
 class MessageController extends Controller
 {
@@ -55,9 +56,11 @@ class MessageController extends Controller
             ],
         );
 
+        $uuid = Uuid::uuid4();
+
         // data request
         $data = [
-            'uuid' => uniqid(), 
+            'kode_message' => $uuid->toString(), 
             'name' => $request->name,
             'email' => $request->email,
             'subject' => $request->subject,
